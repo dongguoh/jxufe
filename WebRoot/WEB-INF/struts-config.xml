@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources />
+	<form-beans>
+		<form-bean name="loginForm"
+			type="com.gjx.struts.form.LoginForm" />
+		<form-bean name="accountForm"
+			type="com.gjx.struts.form.AccountForm" />
+		<form-bean name="informationForm"
+			type="com.gjx.struts.form.InformationForm" />
+		<form-bean name="uploadForm"
+			type="com.gjx.struts.form.UploadForm" />
+		<form-bean name="linkTypeForm"
+			type="com.gjx.struts.form.LinkTypeForm" />
+			<form-bean name="informationTypeForm"
+			type="com.gjx.struts.form.InformationTypeForm" />
+		<form-bean name="linkForm" type="com.gjx.struts.form.LinkForm" />
+    <form-bean name="jpkcForm" type="com.gjx.struts.form.JpkcForm" />
+
+	</form-beans>
+
+	<global-exceptions />
+	<global-forwards>
+		<forward name="index" path="/index.xsp" />
+		<forward name="admin" path="/admin/admin.xsp" />
+		<forward name="logoff" path="/index.xsp" />
+		<forward name="accountList"
+			path="/admin/account/accountList.jsp" />
+		<forward name="informationList"
+			path="/admin/information/informationList.jsp" />
+		
+	</global-forwards>
+	<action-mappings>
+		<action path="/index"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/index.jsp"
+			/>	
+		<action path="/jpkcList"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/jsp/jpkc.jsp"
+			/>		
+
+		<action path="/admin/admin"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/admin/index.html" />
+		<!-- 登录 这里的注销问题没有解决-->
+		<action name="loginForm" path="/admin/login"
+			scope="request" input="/admin/account/login.jsp"
+			type="com.gjx.struts.action.LoginAction" />
+
+
+		<!-- 帐户管理 -->
+		<action path="/admin/account/account" parameter="method"
+			type="com.gjx.struts.action.AccountAction">
+			<forward name="update"
+				path="/admin/account/updateAccount.jsp" />
+		</action>
+		<action path="/admin/account/insertAccount" name="accountForm"
+			input="/admin/account/insertAccount.jsp" validate="true"
+			parameter="method" type="com.gjx.struts.action.AccountAction" />
+
+		<action path="/admin/account/updateAccount" name="accountForm"
+			input="/admin/account/updateAccount.jsp" validate="true"
+			parameter="method" type="com.gjx.struts.action.AccountAction" />
+		<action name="informationForm" path="/admin/editInformation"
+			input="/admin/information/insertInformation.jsp" scope="request"
+			parameter="method" type="com.gjx.struts.action.InformationAction" />
+
+		<action path="/admin/information" scope="request"
+			parameter="method" type="com.gjx.struts.action.InformationAction">
+			<forward name="update"
+				path="/admin/information/updateInformation.jsp">
+			</forward>
+		</action>
+
+
+		<action path="/readInformation"
+			type="com.gjx.struts.action.ReadInformationAction" scope="session" >			
+			<forward name="success" path="/WEB-INF/jsp/information.jsp" />
+			<forward name="moreInformationList" path="/WEB-INF/jsp/moreInformationList.jsp" />
+			
+		</action>
+		<action name="uploadForm" path="/admin/upload" scope="request"
+			type="com.gjx.struts.action.UploadAction" validate="false">
+			<forward name="success"
+				path="/admin/information/uploadFile.jsp" />
+
+		</action>
+
+
+		<action path="/admin/information/deleteFile"
+			type="com.gjx.struts.action.DeleteFileAction" scope="request">
+			<forward name="success"
+				path="/admin/information/updateInformation.jsp" />
+			<forward name="success2"
+				path="/admin/information/uploadFile.jsp" />
+
+		</action>
+		<action path="/editlinkType" name="linkTypeForm"
+			input="/admin/link/editLinkType.jsp"
+			type="com.gjx.struts.action.LinkTypeAction" parameter="method"
+			validate="true">
+			<forward name="success" path="/admin/link/editLinkType.jsp" />
+		</action>
+		<action path="/admin/link/linkType"
+			type="com.gjx.struts.action.LinkTypeAction" parameter="method"
+			validate="false">
+			<forward name="success" path="/admin/link/editLinkType.jsp" />
+		</action>
+		<action path="/admin/link/link" parameter="method"
+			type="com.gjx.struts.action.LinkAction">
+			<forward name="success" path="/admin/link/editLink.jsp" />
+		</action>
+
+		<action name="linkForm" input="/admin/link/editLink.jsp"
+			path="/admin/link/editLink" parameter="method" validate="true"
+			type="com.gjx.struts.action.LinkAction">
+			<forward name="success" path="/admin/link/editLink.jsp" />
+		</action>
+		
+		<action path="/admin/information/informationType"
+			type="com.gjx.struts.action.InformationTypeAction" parameter="method"
+			validate="false">
+			<forward name="success" path="/admin/information/editInformationType.jsp" />
+		</action>
+		
+		<action path="/editInformationType" name="informationTypeForm"
+			input="/admin/information/editInformationType.jsp"
+			type="com.gjx.struts.action.InformationTypeAction" parameter="method"
+			validate="true">
+			<forward name="success" path="/admin/information/editInformationType.jsp" />
+		</action>
+    <action path="/admin/jpkc/editJpkc" type="com.gjx.struts.action.JpkcAction" 
+    		input="/admin/jpkc/editJpkc.jsp"
+    		parameter="method" validate="true" scope="request"
+    		name="jpkcForm"
+    >
+    <forward name="success" path="/admin/jpkc/editJpkc.jsp" />
+    </action>
+	
+  <action path="/admin/jpkc/jpkc" type="com.gjx.struts.action.JpkcAction" 
+    		    		parameter="method" scope="request" validate="false">
+    <forward name="success" path="/admin/jpkc/editJpkc.jsp" />
+    </action>
+    <action
+      path="/readJpkc"
+      type="com.gjx.struts.action.ReadJpkcAction"
+      validate="false" >
+       <forward name="success" path="/WEB-INF/jsp/jpkc.jsp" />
+       </action>
+
+
+	</action-mappings>
+
+
+
+	<message-resources parameter="properties.Application" />
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+</struts-config>
+

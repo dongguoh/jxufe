@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    
+    <description>这是显示Header的链接部分的</description>
+    <tlib-version>1.0</tlib-version>
+    <short-name>MyTags</short-name>
+    <uri>/MyTags</uri>
+    <tag>
+    	<description>这是显示Header的链接部分的</description>
+    	<name>displayHeaderMenu</name>
+    	<tag-class>com.gjx.tags.HeaderMenuTag</tag-class>
+    	<body-content>empty</body-content>    
+    </tag>
+    <tag>
+    	<description>显示LeftSchoolMenu链接部分</description>
+    	<name>displayLeftSchoolMenu</name>
+    	<tag-class>com.gjx.tags.LeftSchoolMenu</tag-class>
+    	<body-content>empty</body-content>
+    </tag>
+    <tag>
+    	<description>显示LeftFriendsMenu链接部分</description>
+    	<name>displayLeftFriendsMenu</name>
+    	<tag-class>com.gjx.tags.LeftFriendsMenu</tag-class>
+    	<body-content>empty</body-content>
+    </tag>
+</taglib>
+    
+    

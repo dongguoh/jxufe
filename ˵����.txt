@@ -1,0 +1,35 @@
+若要登录后台：
+
+建数据库为jxufe或者改SQL/table.sql里的创建的名称
+
+先导入table.sql再导入insertData.sql
+
+如下
+http://IP地址:端口号/虚拟目录名/admin/
+
+连接数据库文件
+
+在WEB-INF/classes/properties/下的database.properties
+只能用Mysql数据库
+
+若要修改每页显示的列表行数，请修改
+com.gjx.util.Constants
+这个类的最下面几行，（这个地方开始就写成静态的啦，所以后面不能修改成读取文件的）
+
+若要修改浏览信息时最左边的最上面的显示的链接栏的行数，
+修改WEB-INF/jsp/informationLeftMenu.jsp这个文件的
+第２８行的
+<logic:iterate id="ifList" name="informationMenuList" length="15" offset="0" type="Information">
+length的长度
+
+修改主页显示的滑动的大图片
+在js/slideshow.js里有一个，photos的数组，修改即可，
+对应的是photos文件夹下的图片不过只能是.jpg的图片
+
+修改链接图片在
+WEB-INF/jsp/pictureLink.jsp 里面
+
+
+还有就是在后台发布信息时只能用IE浏览器
+
+
